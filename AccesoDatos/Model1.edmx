@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_EncriptacionDesencriptacionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clave">
+          <Key>
+            <PropertyRef Name="IdClave" />
+          </Key>
+          <Property Name="IdClave" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Mensaje">
+          <Key>
+            <PropertyRef Name="IdMensaje" />
+          </Key>
+          <Property Name="IdMensaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mensaje" Type="varchar(max)" />
+          <Property Name="IdClave" Type="int" />
+        </EntityType>
+        <EntityType Name="MensajeEncriptado">
+          <Key>
+            <PropertyRef Name="IdMensajeEncriptado" />
+          </Key>
+          <Property Name="IdMensajeEncriptado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaveEncriptada" Type="varchar(max)" />
+          <Property Name="MensajeEncriptado" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__Mensaje__IdClave__5535A963">
+          <End Role="Clave" Type="Self.Clave" Multiplicity="0..1" />
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clave">
+              <PropertyRef Name="IdClave" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="IdClave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GuardarClaveYMensaje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NuevaClave" Type="varchar" Mode="In" />
+          <Parameter Name="NuevoMensaje" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GuardarClaveYMensajeEncriptado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClaveEncriptada" Type="varchar" Mode="In" />
+          <Parameter Name="MensajeEncriptado" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="ObtenerMensajePorClave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClaveIngresada" Type="varchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="db_EncriptacionDesencriptacionModelStoreContainer">
+          <EntitySet Name="Clave" EntityType="Self.Clave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mensaje" EntityType="Self.Mensaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MensajeEncriptado" EntityType="Self.MensajeEncriptado" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Mensaje__IdClave__5535A963" Association="Self.FK__Mensaje__IdClave__5535A963">
+            <End Role="Clave" EntitySet="Clave" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_EncriptacionDesencriptacionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clave">
+          <Key>
+            <PropertyRef Name="IdClave" />
+          </Key>
+          <Property Name="IdClave" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Clave1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mensaje" Relationship="Self.FK__Mensaje__IdClave__5535A963" FromRole="Clave" ToRole="Mensaje" />
+        </EntityType>
+        <EntityType Name="Mensaje">
+          <Key>
+            <PropertyRef Name="IdMensaje" />
+          </Key>
+          <Property Name="IdMensaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mensaje1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdClave" Type="Int32" />
+          <NavigationProperty Name="Clave" Relationship="Self.FK__Mensaje__IdClave__5535A963" FromRole="Mensaje" ToRole="Clave" />
+        </EntityType>
+        <Association Name="FK__Mensaje__IdClave__5535A963">
+          <End Role="Clave" Type="Self.Clave" Multiplicity="0..1" />
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clave">
+              <PropertyRef Name="IdClave" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="IdClave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_EncriptacionDesencriptacionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clave" EntityType="Self.Clave" />
+          <EntitySet Name="Mensaje" EntityType="Self.Mensaje" />
+          <AssociationSet Name="FK__Mensaje__IdClave__5535A963" Association="Self.FK__Mensaje__IdClave__5535A963">
+            <End Role="Clave" EntitySet="Clave" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+          <FunctionImport Name="GuardarClaveYMensaje">
+            <Parameter Name="NuevaClave" Mode="In" Type="String" />
+            <Parameter Name="NuevoMensaje" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerMensajePorClave" ReturnType="Collection(String)">
+          <Parameter Name="ClaveIngresada" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="MensajeEncriptado" EntityType="db_EncriptacionDesencriptacionModel.MensajeEncriptado" />
+          <FunctionImport Name="GuardarClaveYMensajeEncriptado">
+            <Parameter Name="ClaveEncriptada" Mode="In" Type="String" />
+            <Parameter Name="MensajeEncriptado" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="MensajeEncriptado">
+          <Key>
+            <PropertyRef Name="IdMensajeEncriptado" />
+          </Key>
+          <Property Name="IdMensajeEncriptado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaveEncriptada" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MensajeEncriptado1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_EncriptacionDesencriptacionModelStoreContainer" CdmEntityContainer="db_EncriptacionDesencriptacionEntities">
+          <EntitySetMapping Name="Clave">
+            <EntityTypeMapping TypeName="db_EncriptacionDesencriptacionModel.Clave">
+              <MappingFragment StoreEntitySet="Clave">
+                <ScalarProperty Name="IdClave" ColumnName="IdClave" />
+                <ScalarProperty Name="Clave1" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mensaje">
+            <EntityTypeMapping TypeName="db_EncriptacionDesencriptacionModel.Mensaje">
+              <MappingFragment StoreEntitySet="Mensaje">
+                <ScalarProperty Name="IdMensaje" ColumnName="IdMensaje" />
+                <ScalarProperty Name="Mensaje1" ColumnName="Mensaje" />
+                <ScalarProperty Name="IdClave" ColumnName="IdClave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GuardarClaveYMensaje" FunctionName="db_EncriptacionDesencriptacionModel.Store.GuardarClaveYMensaje" />
+          <FunctionImportMapping FunctionImportName="ObtenerMensajePorClave" FunctionName="db_EncriptacionDesencriptacionModel.Store.ObtenerMensajePorClave" />
+          <EntitySetMapping Name="MensajeEncriptado">
+            <EntityTypeMapping TypeName="db_EncriptacionDesencriptacionModel.MensajeEncriptado">
+              <MappingFragment StoreEntitySet="MensajeEncriptado">
+                <ScalarProperty Name="MensajeEncriptado1" ColumnName="MensajeEncriptado" />
+                <ScalarProperty Name="ClaveEncriptada" ColumnName="ClaveEncriptada" />
+                <ScalarProperty Name="IdMensajeEncriptado" ColumnName="IdMensajeEncriptado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GuardarClaveYMensajeEncriptado" FunctionName="db_EncriptacionDesencriptacionModel.Store.GuardarClaveYMensajeEncriptado" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
