@@ -78,6 +78,7 @@
             this.txtClave.Size = new System.Drawing.Size(279, 32);
             this.txtClave.TabIndex = 2;
             this.txtClave.Text = "Ingrese su clave";
+            this.txtClave.TextChanged += new System.EventHandler(this.txtClave_TextChanged);
             // 
             // label3
             // 
@@ -121,7 +122,7 @@
             this.txtMostrarMensajeEncriptado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
             this.txtMostrarMensajeEncriptado.Font = new System.Drawing.Font("Myanmar Text", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMostrarMensajeEncriptado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.txtMostrarMensajeEncriptado.Location = new System.Drawing.Point(48, 456);
+            this.txtMostrarMensajeEncriptado.Location = new System.Drawing.Point(70, 457);
             this.txtMostrarMensajeEncriptado.Multiline = true;
             this.txtMostrarMensajeEncriptado.Name = "txtMostrarMensajeEncriptado";
             this.txtMostrarMensajeEncriptado.Size = new System.Drawing.Size(382, 71);
@@ -173,7 +174,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

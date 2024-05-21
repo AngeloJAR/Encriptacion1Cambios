@@ -5,10 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4d3f03f422e94241868b74d444da906b" Name="Diagram1">
-        <EntityTypeShape EntityType="db_EncriptacionDesencriptacionModel.Clave" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_EncriptacionDesencriptacionModel.Mensaje" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="db_EncriptacionDesencriptacionModel.FK__Mensaje__IdClave__5535A963" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="db_EncriptacionDesencriptacionModel.MensajeEncriptado" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="db_EncriptacionDesencriptacionModel.MensajeEncriptado" Width="1.5" PointX="4.375" PointY="1.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

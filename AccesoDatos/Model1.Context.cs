@@ -27,8 +27,6 @@ namespace AccesoDatos
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Clave> Clave { get; set; }
-        public virtual DbSet<Mensaje> Mensaje { get; set; }
         public virtual DbSet<MensajeEncriptado> MensajeEncriptado { get; set; }
     
         public virtual int GuardarClaveYMensaje(string nuevaClave, string nuevoMensaje)

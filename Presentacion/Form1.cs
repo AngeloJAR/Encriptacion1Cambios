@@ -120,5 +120,10 @@ namespace Presentacion
         {
 
         }
+
+        private void txtClave_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
